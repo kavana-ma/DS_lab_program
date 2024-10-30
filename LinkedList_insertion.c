@@ -74,27 +74,44 @@ void display(NODE first) {
 }
 
 int main() {
-    int item;
+    int item, pos, choice;
     NODE first = NULL;
-    printf("Creating linked list:\n");
-    first = insert_beginning(first, 1);
-    first = insert_beginning(first, 2);
-    first = insert_beginning(first, 3);
 
-    printf("List after creating: ");
-    display(first);
+    while (1) {
+        printf("Choose an operation:\n");
+        printf("1. Insert at beginning\n");
+        printf("2. Insert at end\n");
+        printf("3. Insert at position\n");
+        printf("4. Display list\n");
+        printf("5. Exit\n");
+        scanf("%d", &choice);
 
-    printf("Inserting 10 at the beginning:\n");
-    first = insert_beginning(first, 10);
-    display(first);
-
-    printf("Inserting 4 at the end:\n");
-    first = insert_end(first, 4);
-    display(first);
-
-    printf("Inserting 5 at position 2:\n");
-    first = insert_pos(first, 5, 2);
-    display(first);
+        switch (choice) {
+            case 1:
+                printf("Enter item to insert at beginning: ");
+                scanf("%d", &item);
+                first = insert_beginning(first, item);
+                break;
+            case 2:
+                printf("Enter item to insert at end: ");
+                scanf("%d", &item);
+                first = insert_end(first, item);
+                break;
+            case 3:
+                printf("Enter item to insert and position: ");
+                scanf("%d %d", &item, &pos);
+                first = insert_pos(first, item, pos);
+                break;
+            case 4:
+                printf("List: ");
+                display(first);
+                break;
+            case 5:
+                exit(0);
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
 
     return 0;
 }
