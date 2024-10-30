@@ -85,33 +85,55 @@ void display(NODE first) {
 }
 
 int main() {
-    int item;
+    int item, choice;
     NODE first = NULL;
 
-    first = insert_beginning(first, 1);
-    first = insert_beginning(first, 2);
-    first = insert_beginning(first, 3);
-    first = insert_beginning(first, 4);
-    first = insert_beginning(first, 5);
     first = insert_beginning(first, 6);
+    first = insert_beginning(first, 5);
+    first = insert_beginning(first, 4);
+    first = insert_beginning(first, 3);
+    first = insert_beginning(first, 2);
+    first = insert_beginning(first, 1);
 
     printf("List before deleting:\n");
     display(first);
-    
-    printf("Deleting at first.\n");
-    first = delete_first(first);
-    printf("List after deleting 1st: \n");
-    display(first);
 
-    printf("Deleting  at the end:\n");
-    first = delete_end(first);
-    printf("List after deleting at end: \n");
-    display(first);
+    while (1) {
+        printf("Choose an operation to delete:\n");
+        printf("1. Delete at beginning\n");
+        printf("2. Delete at end\n");
+        printf("3. Delete specific value\n");
+        printf("4. Display list\n");
+        printf("5. Exit\n");
+        scanf("%d", &choice);
 
-    printf("Deleting  value 2:\n");
-    first = delete_value(first, 2);
-    printf("List after deleting value 2: \n");
-    display(first);
+        switch (choice) {
+            case 1:
+                printf("Deleting at first.\n");
+                first = delete_first(first);
+                display(first);
+                break;
+            case 2:
+                printf("Deleting at the end.\n");
+                first = delete_end(first);
+                display(first);
+                break;
+            case 3:
+                printf("Enter value to delete: ");
+                scanf("%d", &item);
+                first = delete_value(first, item);
+                display(first);
+                break;
+            case 4:
+                printf("List: ");
+                display(first);
+                break;
+            case 5:
+                exit(0);
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
 
     return 0;
 }
